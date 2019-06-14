@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+*处理 0 - 99 范围内的数字转换成字母列表
+*/
 @Service
 public class AdvancedNumberLetterConverter implements NumberLetterConverter {
 
@@ -25,6 +28,7 @@ public class AdvancedNumberLetterConverter implements NumberLetterConverter {
         if (inputNumber <= BaseNumberLetterConverter.BASE_NUM_MAX)
             return baseNumberLetterConverter.convert(inputNumber);
 
+        //split input
         int units = inputNumber % 10;
         int tens = (inputNumber - units) / 10;
 
@@ -37,6 +41,7 @@ public class AdvancedNumberLetterConverter implements NumberLetterConverter {
             letterCombines.addAll(tensLetters);
             letterCombines.addAll(unitsLetters);
         } else {
+            //combine
             unitsLetters.stream().forEach(unitLetter -> {
                 tensLetters.stream().forEach(tenLetter -> {
                     letterCombines.add(unitLetter.concat(tenLetter));
